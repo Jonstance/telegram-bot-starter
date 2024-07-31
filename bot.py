@@ -19,8 +19,8 @@ import logging
 import os
 
 from dotenv import load_dotenv
-from telegram import ForceReply, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
+from telegram import Update, Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters, CallbackContext
 
 # Enable logging
 logging.basicConfig(
@@ -34,13 +34,10 @@ logger = logging.getLogger(__name__)
 
 # Define a few command handlers. These usually take the two arguments update and
 # context.
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Send a message when the command /start is issued."""
-    user = update.effective_user
-    await update.message.reply_html(
-        rf"Hi {user.mention_html()}!",
-        reply_markup=ForceReply(selective=True),
-    )
+async def start(update: Update, context: CallbackContext) -> None:
+    keyboard = [[InlineKeyboardButton("Open Webpage", url='https://jw.org')]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text('Click the button to open the webpage:', reply_markup=reply_markup)
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
