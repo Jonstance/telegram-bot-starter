@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 
 # Define a few command handlers
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    keyboard = [[InlineKeyboardButton("Open Webpage", url='https://jw.org')]]
+    keyboard = [[InlineKeyboardButton("Open Webpage", url='https://taptap-eta.vercel.app/')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text('Click the button to open the webpage:', reply_markup=reply_markup)
 
