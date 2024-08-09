@@ -35,12 +35,15 @@ logger = logging.getLogger(__name__)
 # Define a few command handlers. These usually take the two arguments update and
 # context.
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Send a message when the command /start is issued."""
     user = update.effective_user
-    await update.message.reply_html(
-        rf"Hi {user.mention_html()}!",
-        reply_markup=ForceReply(selective=True),
-    )
+    chat_id = update.effective_chat.id
+
+    args = context.args
+    if args:
+        parameter = args[0]
+        context.bot.send_message(chat_id, f"You provided the parameter: {parameter}")
+    else:
+        context.bot.send_message(chat_id, "No parameter provided.")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
