@@ -20,7 +20,7 @@ import os
 
 from dotenv import load_dotenv
 from telegram import ForceReply, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters, CallbackContext
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
 # Enable logging
 logging.basicConfig(
@@ -34,16 +34,13 @@ logger = logging.getLogger(__name__)
 
 # Define a few command handlers. These usually take the two arguments update and
 # context.
-def start(update: Update, context: CallbackContext):
-    user_id = update.message.from_user.id
-    referral_id = context.args[0] if context.args else user_id  # Use user_id as fallback if no referral_id
-
-    # Generate URL with referral parameter
-    referral_link = f"https://t.me/snowtapcoin_bot/earn?startapp={referral_id}"
-    
-    # Provide the link to the user and open the Mini App directly
-    update.message.reply_text(f"Opening the Mini App with your referral link...", parse_mode='Markdown')
-    update.message.reply_text(f"[Click here to open the Mini App directly]({referral_link})", parse_mode='Markdown')
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Send a message when the command /start is issued."""
+    user = update.effective_user
+    await update.message.reply_html(
+        rf"Hi {user.mention_html()}!",
+        reply_markup=ForceReply(selective=True),
+    )
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
