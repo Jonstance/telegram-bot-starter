@@ -20,7 +20,7 @@ import os
 
 from dotenv import load_dotenv
 from telegram import ForceReply, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters, CallbackContext
 
 # Enable logging
 logging.basicConfig(
