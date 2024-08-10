@@ -37,7 +37,7 @@ logger = logging.getLogger(__name__)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user
     chat_id = update.effective_chat.id
-
+    print(update);
     args = context.args
     if args:
         parameter = args[0]
