@@ -37,21 +37,12 @@ logger = logging.getLogger(__name__)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user
     chat_id = update.effective_chat.id
-    # Extract referral_id from the command (e.g., /start REFERRAL_ID)
-    referral_id = context.args[0] if context.args else None
-
-    # Save the referral_id to your database or other storage
-    save_referral_id_to_database(chat_id, referral_id)
-
-    # Send a welcome message
-    message = f"Welcome! Your referral ID is {referral_id if referral_id else 'none'}."
-    context.bot.send_message(chat_id=chat_id, text=message)
-
-def save_referral_id_to_database(chat_id, referral_id):
-    # Implement this function to save the referral_id associated with the chat_id
-    # For example, you might save this information to a database
-    print(f"Saving referral ID {referral_id} for chat ID {chat_id}")
-
+    args = context.args
+    if args:
+        parameter = args[0]
+        context.bot.send_message(chat_id, f"You provided the parameter: {parameter}")
+    else:
+        context.bot.send_message(chat_id, "No parameter provided.")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
