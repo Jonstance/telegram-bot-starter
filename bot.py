@@ -19,7 +19,7 @@ import logging
 import os
 
 from dotenv import load_dotenv
-from telegram import ForceReply, Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
 # Enable logging
@@ -31,36 +31,48 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 
-
-# Define a few command handlers. These usually take the two arguments update and
-# context.
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Send a message with an inline button when the command /start is issued."""
     user = update.effective_user
     chat_id = update.effective_chat.id
-    args = context.args
-    if args:
-        parameter = args[0]
-        context.bot.send_message(chat_id, f"You provided the parameter: {parameter}")
-    else:
-        context.bot.send_message(chat_id, "No parameter provided.")
-
+    
+    # Define the inline keyboard button
+    keyboard = [
+        [InlineKeyboardButton("Open SnowCoin Bot", web_app={
+            "url": "https://bot.snowdex.org"  # Replace with your actual mini app URL
+        })]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    # Send the message with the inline button
+    await update.message.reply_text(
+        f"Hello {user.first_name}! Welcome to the bot. Click the button below to open the mini app.",
+        reply_markup=reply_markup
+    )
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
     await update.message.reply_text("Help!")
 
-
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Echo the user message."""
     await update.message.reply_text(update.message.text)
 
+async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Log errors."""
+    logger.error(f"Update {update} caused error {context.error}")
 
 def main() -> None:
     """Start the bot."""
     load_dotenv()
 
+    token = os.getenv("TOKEN")
+    if not token:
+        logger.error("TOKEN environment variable not set")
+        return
+
     # Create the Application and pass it your bot's token.
-    application = Application.builder().token(os.environ["TOKEN"]).build()
+    application = Application.builder().token(token).build()
 
     # on different commands - answer in Telegram
     application.add_handler(CommandHandler("start", start))
@@ -69,9 +81,11 @@ def main() -> None:
     # on non command i.e message - echo the message on Telegram
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
 
+    # Add error handler
+    application.add_error_handler(error_handler)
+
     # Run the bot until the user presses Ctrl-C
     application.run_polling(allowed_updates=Update.ALL_TYPES)
-
 
 if __name__ == "__main__":
     main()
