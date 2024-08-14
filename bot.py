@@ -48,45 +48,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     # Send the message with the inline buttons
     await update.message.reply_text(
-        f"**Snowcoin: A Decentralized Ecosystem**\n\n"
-        f"Snowcoin is a cutting-edge blockchain project revolutionizing the crypto landscape. Our mission is to create a decentralized ecosystem, empowering individuals to take control of their financial freedom.\n\n"
-        f"**SnowDex: A Decentralized Crypto Exchange**\n\n"
-        f"At the heart of Snowcoin lies SnowDex, a decentralized crypto exchange built on the latest blockchain technology. SnowDex prioritizes security, transparency, and community governance, ensuring a fair and accessible trading experience for all.\n\n"
-        f"**Key Features:**\n\n"
-        f"- Decentralized Governance: SnowDex operates on a decentralized network, allowing the community to drive decision-making and development.\n"
-        f"- Security: Multi-layered security measures protect users' assets and data.\n"
-        f"- Transparency: Real-time market data, transparent order books, and open-source smart contracts ensure a trustworthy trading environment.\n"
-        f"- Community-Driven: SnowDex is built by the community, for the community, with user feedback shaping our development roadmap.\n"
-        f"- Multi-Asset Support: Trade a diverse range of cryptocurrencies, with more assets added based on community demand.\n"
-        f"- Liquidity Incentives: SnowDex rewards liquidity providers, ensuring a stable and liquid market.\n"
-        f"- User-Friendly Interface: Seamlessly navigate SnowDex's intuitive design, making it easy for beginners and experienced traders alike.\n\n"
-        f"**Join the Snowcoin and SnowDex Community Today!**\n\n"
-        f"Participate in a revolutionary decentralized exchange that prioritizes user needs and empowers financial freedom. Engage with our community, contribute to our growth, and shape the future of SnowDex!\n\n"
+        f"Snow Blockchain is a cutting-edge, decentralized network that revolutionizes the crypto landscape. \n\n"
+        f"As a fast and reliable blockchain, Snow Blockchain prioritizes security, transparency, and community governance, ensuring a trustworthy and accessible environment for all users. With its decentralized governance, multi-layered security measures, and open-source smart contracts.\n\n"
+        f"Snow Blockchain provides a robust foundation for SnowDex, its native decentralized crypto exchange. Join the Snowcoin and SnowDex community today and be part of a revolutionary decentralized exchange that prioritizes user needs and empowers financial freedom!\n\n"
         f"Hello {user.first_name}! Click the button below to open the mini app.",
         reply_markup=reply_markup,
         parse_mode='Markdown'  # Use Markdown for formatting
     )
-    """Send a message with an inline button when the command /start is issued."""
-    user = update.effective_user
-    chat_id = update.effective_chat.id
     
-    # Define the inline keyboard button
-    keyboard = [
-        [InlineKeyboardButton("Start now!", web_app={
-            "url": "https://bot.snowdex.org"  # Replace with your actual mini app URL
-        })],
-        [InlineKeyboardButton("Join Telegram Channel", url="https://t.me/snowcoin_App")],  # Replace with your channel URL
-        [InlineKeyboardButton("Follow on X", url="https://x.com/Snowcoin_App?t=JQJpsFgQuZRIo1qMP3Tmig&s=09")]  # Replace with your Twitter URL
-   
-
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    
-    # Send the message with the inline button
-    await update.message.reply_text(
-        f"Hello {user.first_name}! Welcome to the bot. Click the button below to open the mini app.",
-        reply_markup=reply_markup
-    )
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
