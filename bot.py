@@ -75,8 +75,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         [InlineKeyboardButton("Start now!", web_app={
             "url": "https://bot.snowdex.org"  # Replace with your actual mini app URL
         })],
-        [InlineKeyboardButton("Join Telegram Channel", url="https://t.me/your_channel_username")],  # Replace with your channel URL
-        [InlineKeyboardButton("Follow on Twitter", url="https://twitter.com/your_twitter_handle")]  # Replace with your Twitter URL
+        [InlineKeyboardButton("Join Telegram Channel", url="https://t.me/snowcoin_App")],  # Replace with your channel URL
+        [InlineKeyboardButton("Follow on X", url="https://x.com/Snowcoin_App?t=JQJpsFgQuZRIo1qMP3Tmig&s=09")]  # Replace with your Twitter URL
    
 
     ]
