@@ -51,7 +51,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         f"Snow Blockchain is a cutting-edge, decentralized network that revolutionizes the crypto landscape. \n\n"
         f"As a fast and reliable blockchain, Snow Blockchain prioritizes security, transparency, and community governance, ensuring a trustworthy and accessible environment for all users. With its decentralized governance, multi-layered security measures, and open-source smart contracts.\n\n"
         f"Snow Blockchain provides a robust foundation for SnowDex, its native decentralized crypto exchange. Join the Snowcoin and SnowDex community today and be part of a revolutionary decentralized exchange that prioritizes user needs and empowers financial freedom!\n\n"
-        f"Hello {user.first_name}! Click the button below to open the mini app.",
+        f"Hello {user.first_name}! Click the button below to start earning .",
         reply_markup=reply_markup,
         parse_mode='Markdown'  # Use Markdown for formatting
     )
