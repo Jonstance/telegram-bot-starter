@@ -48,9 +48,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     # Send the message with the inline buttons
     await update.message.reply_text(
-        f"Snow Blockchain is a cutting-edge, decentralized network that revolutionizes the crypto landscape. \n\n"
-        f"As a fast and reliable blockchain, Snow Blockchain prioritizes security, transparency, and community governance, ensuring a trustworthy and accessible environment for all users. With its decentralized governance, multi-layered security measures, and open-source smart contracts.\n\n"
-        f"Snow Blockchain provides a robust foundation for SnowDex, its native decentralized crypto exchange. Join the Snowcoin and SnowDex community today and be part of a revolutionary decentralized exchange that prioritizes user needs and empowers financial freedom!\n\n"
+        f"SnowCoin is a cutting-edge, decentralized network that revolutionises the crypto landscape, launching on the Ice Open network.\n\n"
+        f"As a fast and reliable cryptocurrency, SnowCoin prioritises security, transparency, and community governance, ensuring a trustworthy and accessible environment for all users. With its decentralised governance and multi-layered security measures, SnowCoin provides a robust foundation for SnowDex, its native decentralised crypto exchange. \n\n"
+        f"Join the SnowCoin and SnowDex community today and be part of a revolutionary decentralised exchange that prioritises user needs and empowers financial freedom!\n\n"
+        f"JOIN THE REVOLUTION, START MINING SNOWCOIN TODAY!"
         f"Hello {user.first_name}! Click the button below to start earning .",
         reply_markup=reply_markup,
         parse_mode='Markdown'  # Use Markdown for formatting
